@@ -1,0 +1,111 @@
+@import './bootstrap-grid.min.css';
+
+
+@font-face {
+  font-family: 'Proxima';
+  src: url('../fonts/ProximaNova-Light/ProximaNova-Light.eot');
+  src: url('../fonts/ProximaNova-Light/ProximaNova-Light.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/ProximaNova-Light/ProximaNova-Light.woff2') format('woff2'),
+      url('../fonts/ProximaNova-Light/ProximaNova-Light.woff') format('woff'),
+      url('../fonts/ProximaNova-Light/ProximaNova-Light.ttf') format('truetype'),
+      url('../fonts/ProximaNova-Light/ProximaNova-Light.svg#ProximaNova-Light') format('svg');
+  font-weight: 300;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Proxima';
+  src: url('../fonts/ProximaNova-Regular/ProximaNova-Regular.eot');
+  src: url('../fonts/ProximaNova-Regular/ProximaNova-Regular.woff2') format('woff2'),
+      url('../fonts/ProximaNova-Regular/ProximaNova-Regular.woff') format('woff'),
+      url('../fonts/ProximaNova-Regular/ProximaNova-Regular.ttf') format('truetype'),
+      url('../fonts/ProximaNova-Regular/ProximaNova-Regular.svg#ProximaNova-Regular') format('svg'),
+      url('../fonts/ProximaNova-Regular/ProximaNova-Regular.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Proxima';
+  src: url('../fonts/ProximaNova-Medium/proxima-nova-medium.eot');
+  src: url('../fonts/ProximaNova-Medium/proxima-nova-medium.woff2') format('woff2'),
+      url('../fonts/ProximaNova-Medium/ProximaNova-Medium.woff') format('woff'),
+      url('../fonts/ProximaNova-Medium/ProximaNova-Medium.ttf') format('truetype'),
+      url('../fonts/ProximaNova-Medium/ProximaNova-Medium.svg#ProximaNova-Medium') format('svg'),
+      url('../fonts/ProximaNova-Medium/proxima-nova-medium.eot?#iefix') format('embedded-opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Proxima';
+  src: url('../fonts/ProximaNova-Semibold/ProximaNova-Semibold.eot');
+  src: url('../fonts/ProximaNova-Semibold/ProximaNova-Semibold.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/ProximaNova-Semibold/ProximaNova-Semibold.woff2') format('woff2'),
+      url('../fonts/ProximaNova-Semibold/ProximaNova-Semibold.woff') format('woff'),
+      url('../fonts/ProximaNova-Semibold/ProximaNova-Semibold.ttf') format('truetype'),
+      url('../fonts/ProximaNova-Semibold/ProximaNova-Semibold.svg#ProximaNova-Semibold') format('svg');
+  font-weight: 600;
+  font-style: normal;
+}
+
+
+
+
+@font-face {
+  font-family: 'Proxima';
+  src: url('../fonts/ProximaNova-Bold/ProximaNova-Bold.eot');
+  src: url('../fonts/ProximaNova-Bold/ProximaNova-Bold.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/ProximaNova-Bold/ProximaNova-Bold.woff2') format('woff2'),
+      url('../fonts/ProximaNova-Bold/ProximaNova-Bold.woff') format('woff'),
+      url('../fonts/ProximaNova-Bold/ProximaNova-Bold.ttf') format('truetype'),
+      url('../fonts/ProximaNova-Bold/ProximaNova-Bold.svg#ProximaNova-Bold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Proxima';
+  src: url('../fonts/ProximaNova-Black/ProximaNova-Black.eot');
+  src: url('../fonts/ProximaNova-Black/ProximaNova-Black.eot?#iefix') format('embedded-opentype'),
+      url('../fonts/ProximaNova-Black/ProximaNova-Black.woff2') format('woff2'),
+      url('../fonts/ProximaNova-Black/ProximaNova-Black.woff') format('woff'),
+      url('../fonts/ProximaNova-Black/ProximaNova-Black.ttf') format('truetype'),
+      url('../fonts/ProximaNova-Black/ProximaNova-Black.svg#ProximaNova-Black') format('svg');
+  font-weight: 900;
+  font-style: normal;
+}
+
+
+*{
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+body{
+  font-family: 'Proxima', sans-serif;
+  font-weight: normal;
+  overflow-x: hidden;
+  height: 100%;
+  background: #333333 url('../images/weather.jpg') no-repeat center;
+  background-size: cover;
+}
+.main-wrapper{
+  background-color: rgba(25,25,25, 0.8);
+  backdrop-filter: blur(30px);
+  min-height: 100vh;
+}
+
+a,a:hover,a:active{
+  text-decoration: none;
+}
+
+/* .weekdays .day-col{
+  border-right: 1px solid #777777;
+} */

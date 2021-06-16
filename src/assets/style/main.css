@@ -86,11 +86,14 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  outline: none;
+  font-family: 'Proxima', sans-serif;
+  font-family: 400;
 }
 
 body{
   font-family: 'Proxima', sans-serif;
-  font-weight: normal;
+  font-weight: 400;
   overflow-x: hidden;
   height: 100%;
   background: #333333 url('../images/weather.jpg') no-repeat center;
@@ -106,6 +109,20 @@ a,a:hover,a:active{
   text-decoration: none;
 }
 
-/* .weekdays .day-col{
-  border-right: 1px solid #777777;
-} */
+.top-block{
+  background-color: rgba(10,10,10, 0.2);
+  margin-bottom: 15px;
+}
+
+.weekdays .day-col{
+  position: relative;
+}
+.weekdays .day-col:not(:last-child)::before{
+  position: absolute;
+  content: '';
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 1px;
+  background: linear-gradient(to bottom, #111111,#616161,#111111 );
+}

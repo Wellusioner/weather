@@ -1,137 +1,120 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
-import { current } from '../../services';
-import Cloud from '../../assets/images/partly-cloudy.svg';
+import React, { useState } from 'react';
+import {Today, DayItem} from './components';
+import { cities } from '../../services';
+import Select from 'react-select';
+import { Schema } from '../../schema';
 
-const DayLink = styled(Link)`
-  padding: 20px 5px;
-  color: #ffffff;
-  text-align: center;
-  transition: all 0.2s linear;
-  .has-shadow{
-    text-shadow: 1px 1px 1px #111111;
-  }
-  .day-number {
-    font-size: 30px;
-  }
-  .day-name{
-    color: #929296;
-    font-size: 18px;
-    letter-spacing: 3px;
-  }
-  .day-image{
-    display: inline-block;
-    width: 50%;
-    max-width: 100%;
-  }
-  .day-degree{
-    font-size: 30px;
-    margin-bottom: 15px;
-  }
-  .day-condition,
-  .day-about{
-    font-size: 20px;
-    color: #929296;
-  }
-  .day-condition{
-    margin-bottom: 2px;
-  }
-`;
+const customStyles = {
+  control: provided => ({
+    ...provided,
+    backgroundColor: '#212121',
+    borderColor: '#383838'
+  }),
+  indicatorSeparator: provided => ({
+    ...provided,
+    backgroundColor: '#424242',
+  }),
+  dropdownIndicator: provided => ({
+    ...provided,
+    color: '#828282',
+  }),
+  singleValue: provided => ({
+    ...provided,
+    color: '#989898',
+    fontSize: '20px'
+  })
+}
 
-const Form = styled.form`
-  border-bottom: 1px solid #333333;
-  .search-input{
-    flex: 1;
-    background-color: transparent;
-    border: none;
-    font-size: 24px;
-    color: #dddddd;
-    font-weight: 300;
-  }
-  .search-button{
-    padding: 2px 15px;
-    font-size: 36px;
-    color: #999999;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    span{
-      display: block;
-      transform: rotate(115deg);
-    }
-  }
-`;
+const Home = () => {  
+  const [location, setLocation] = useState(cities[0]);
 
-const Today = styled.div`
-  padding: 20px 0;
-  .today-time{
-    font-size: 50px;
-    font-weight: 600;
-    color: #ffffff;
-  }
-  .today-date{
-    color: #dddddd;
-    font-weight: 500;
-  }
-`;
+  // useEffect(() => {
+  //   const { lat, lng } = location;
+  //   const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&units=metric&appid=71193d93d89755fdac572b758ed67201`;
 
-const Home = () => {
-
-  const [tick, setTick] = useState({
-    hour: current.hour(),
-    minute: current.minute()
-  });
-
-  useEffect(() => {
-    setInterval(() => {
-      setTick(prevState => ({
-        ...prevState,
-        hour: current.hour(),
-        minute: current.minute()
-      }))
-    }, 1000);
-  }, []);
-
-  
+  //     (async () => {
+  //       try{
+  //         const res = await fetch(url);
+  //         const data = await res.json();
+  //         console.log(data);
+  //       }
+  //       catch(err){
+  //         console.log('Error:', err);
+  //       }
+  //     })()
+  // }, [location]);
 
   return (
     <>
-      <div className="top-block">
+      <div className="top-block pt-3">
         <div className="container">
-          <Form className="search-form d-flex">
-            <input className="search-input flex-1" type="text" placeholder="Search for a city in Uzbekistan"/>
-            <button className="search-button" type="submit"><span>&#9740;</span></button>
-          </Form>
-          <Today className="today">
-            <div>
-              <span className="today-time">{tick.hour}:{tick.minute}</span>
-              <div className="today-date">Saturday | 15 JUN</div>
-            </div>
-          </Today>
+          <div className="search-form">
+            <Select
+              placeholder={'Select a city in Uzbekistan'}
+              defaultValue={cities[0]}
+              options={cities}
+              getOptionLabel={data => data.city}
+              getOptionValue={data => data.city}
+              isSearchable
+              onChange={data => setLocation(data)}
+              styles={customStyles}
+            />
+          </div>
         </div>
       </div>
-      <div className="container">
-        <div className="weekdays row row-cols-7 gx-1">
-          {
-            Array.from({length: 7}).map((a,i) => {
-              return <div key={i} className="col day-col">
-              <DayLink 
-                to="/day" 
-                className="d-block"
-              >
-                <div className="day-number has-shadow">{15 + i} JUN</div>
-                <div className="day-name">SUNDAY</div>
-                <img className="day-image" src={Cloud} alt="Cloud"/>
-                <div className="day-degree has-shadow">18&deg; / 28&deg;</div>
-                <span className="d-block day-condition">Sunny</span>
-                <div className="day-about">Rain 40%</div>
-              </DayLink>
-            </div>
-            })
-          }
-        </div>
-      </div>
+      <Schema
+        url="/onecall"
+        params={{
+          lat: location.lat,
+          lon: location.lng,
+          units: 'metric',
+          exclude: 'minutely,hourly'
+        }}
+      >
+        {({isFetched, data, error}) => {
+          
+          return (
+            <>
+              <div className="top-block">
+                <div className="container">
+                  <Today {...{location, isFetched, data, error}}/>
+                </div>
+              </div>
+              <div className="bottom-block">
+                <div className="container">
+                  <div className={`weekdays pb-4 row row-cols-7 ${isFetched ? 'gx-1' : 'gx-3'}`}>
+                    {
+                      isFetched && Object.keys(data).length ? data.daily.slice(0,7).map((item,i) => {
+                        return <DayItem key={i} {...{item, location, index: i}}/>
+                      }) : null
+                    }
+                    {
+                      !isFetched 
+                      ? Array.from({length: 7}, a => a).map((_,i) => {
+                        return <div key={i} className="col day-col py-4">
+                          <div className="skeleton h-16 w-70 mx-auto mb-4"></div>
+                          <div className="skeleton h-16"></div>
+                          <div className="skeleton h-16 mt-3 mb-4 skeleton-circle mx-auto"></div>
+                          <div className="skeleton h-16 mb-4"></div>
+                          <span className="d-block skeleton h-16"></span>
+                        </div>
+                      }) 
+                      : null
+                    }
+                    {
+                      isFetched && error 
+                      ?  <div className="col-12">
+                        <h2 className="text-grey">Something went wrong</h2>
+                      </div>
+                      : null
+                    }
+                  </div>
+                </div>
+              </div>
+            </>
+          )
+        }}
+      </Schema>
     </>
   )
 }

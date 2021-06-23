@@ -1,54 +1,84 @@
+const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const Dotenv = require('dotenv-webpack');
+const dotenv = require('dotenv').config({
+  path: path.join(__dirname, '.env')
+});
 
-module.exports = {
-  mode: process.env.NODE_ENV || 'development',
-  entry: './src/index.js',
-  output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: 'bundle.js'
-  },
-  resolve: {
-    extensions: [
-      '.js',
-      '.jsx'
-    ]
-  },
-  module: {
-    rules: [
-      {
-        test: /\.(js|jsx)$/,
-        use: 'babel-loader',
-        exclude: '/node_modules/'
-      },
-      {
-        test: /\.css$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader']
-      },
-      {
-        test: /\.(jpeg|jpg|png|gif|svg|mp3)$/,
-        use: 'file-loader'
-      },
-      {
-        test: /\.(woff|woff2|eot|ttf)$/,
-        use: {
-          loader: 'url-loader',
+module.exports = (env) => {
+  console.log(env);
+  // const env = dotenv.config().parsed;
+  
+  // reduce it to a nice object, the same as before
+  // const envKeys = Object.keys(env).reduce((prev, next) => {
+  //   prev[`process.env.${next}`] = JSON.stringify(env[next]);
+  //   return prev;
+  // }, {});
+  // console.log(envKeys);
+
+  return ({
+    entry: './src/index.js',
+    output: {
+      path: path.resolve(__dirname, 'build'),
+      filename: 'bundle.js'
+    },
+    resolve: {
+      extensions: [
+        '.js',
+        '.jsx'
+      ],
+      alias: {
+        process: "process/browser"
+      } 
+    },
+    module: {
+      rules: [
+        {
+          test: /\.(js|jsx)$/,
+          use: 'babel-loader',
+          exclude: '/node_modules/'
         },
-      },
-    ]
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname,'src','index.html')
-    }),
-    new MiniCssExtractPlugin({
-      filename: "[name].css",
-      chunkFilename: "[id].css"
-    })
-  ],
-  devServer: {
-    historyApiFallback: true,
-    contentBase: './',
-  }
+        {
+          test: /\.css$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            'css-loader']
+        },
+        {
+          test: /\.(jpeg|jpg|png|gif|svg|mp3)$/,
+          use: 'file-loader'
+        },
+        {
+          test: /\.(woff|woff2|eot|ttf)$/,
+          use: {
+            loader: 'url-loader',
+          },
+        },
+      ],
+    },
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: '[name].css',
+        chunkFilename: "[id].css",
+      }),
+      new HtmlWebpackPlugin({
+        template: path.join(__dirname,'src','index.html')
+      }),
+      // new webpack.ProvidePlugin({
+      //   process: 'process/browser',
+      // }),
+      // new webpack.DefinePlugin({
+      //   "process.env": dotenv.parsed
+      // }),
+      new Dotenv({
+        path: `./.env${env.file ? `.${env.file}` : ''}`
+      }),
+    ],
+    devServer: {
+      historyApiFallback: true,
+      contentBase: path.join(__dirname, 'src'),
+    }
+  })
 }

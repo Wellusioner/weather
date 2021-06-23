@@ -108,7 +108,7 @@ const Day = () => {
                           <div className="d-flex justify-content-between">
                             <span className="current-degree">{((forecast.temp.min + forecast.temp.max)/2).toFixed(0)}&deg;</span>
                             <div className="current-image animate">
-                              <Icons id="09d"/>
+                              <Icons id={forecast.weather[0].icon}/>
                             </div>
                           </div>
                           <div className="current-description">

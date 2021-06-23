@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { time } from '../../services';
+import { time } from 'src/services';
 
 const CurrentTime = () => {
   const [tick, setTick] = useState({

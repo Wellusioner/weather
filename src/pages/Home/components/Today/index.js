@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { time, config } from '../../../../services';
-import { Icons } from '../../../../components';
+import { time } from 'src/services';
+import { Icons } from 'src/components';
 
 const TodayWrapper = styled.div`
   padding: 20px 0;

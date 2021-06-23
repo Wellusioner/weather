@@ -2,9 +2,9 @@ import React from 'react'
 import styled from 'styled-components';
 import qs from 'query-string';
 import { useParams, useLocation, useHistory } from 'react-router-dom';
-import AngleLeft from '../../../../assets/images/angle-left.svg';
-import { CurrentTime } from '../../../../components';
-import { time } from '../../../../services';
+import AngleLeft from 'src/assets/images/angle-left.svg';
+import { CurrentTime } from 'src/components';
+import { time } from 'src/services';
 
 const Top = styled.div`
   background-color: rgba(20,20,20, 0.45);

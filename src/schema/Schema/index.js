@@ -1,5 +1,5 @@
 import { useState, useEffect} from 'react';
-import { config, queryBuilder } from '../../services';
+import { config, queryBuilder } from 'src/services';
 
 const Schema = ({ url='', params={}, children }) => {
   const [isFetched, setFetched] = useState(true);

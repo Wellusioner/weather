@@ -8,15 +8,6 @@ const dotenv = require('dotenv').config({
 });
 
 module.exports = (env) => {
-  console.log(env);
-  // const env = dotenv.config().parsed;
-  
-  // reduce it to a nice object, the same as before
-  // const envKeys = Object.keys(env).reduce((prev, next) => {
-  //   prev[`process.env.${next}`] = JSON.stringify(env[next]);
-  //   return prev;
-  // }, {});
-  // console.log(envKeys);
 
   return ({
     entry: './src/index.js',
@@ -30,7 +21,8 @@ module.exports = (env) => {
         '.jsx'
       ],
       alias: {
-        process: "process/browser"
+        process: "process/browser",
+        src: path.resolve(__dirname, "src"),
       } 
     },
     module: {
@@ -66,12 +58,6 @@ module.exports = (env) => {
       new HtmlWebpackPlugin({
         template: path.join(__dirname,'src','index.html')
       }),
-      // new webpack.ProvidePlugin({
-      //   process: 'process/browser',
-      // }),
-      // new webpack.DefinePlugin({
-      //   "process.env": dotenv.parsed
-      // }),
       new Dotenv({
         path: `./.env${env.file ? `.${env.file}` : ''}`
       }),

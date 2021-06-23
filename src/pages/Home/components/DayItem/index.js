@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import qs from 'query-string';
-import { time, config } from '../../../../services';
-import { Icons } from '../../../../components';
+import { time } from 'src/services';
+import { Icons } from 'src/components';
 
 const DayLink = styled(Link)`
   padding: 20px 5px;

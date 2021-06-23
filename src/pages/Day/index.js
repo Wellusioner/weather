@@ -1,22 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Chart, Icons } from '../../components';
+import { Chart, Icons } from 'src/components';
 import { Header } from './components';
-import { Schema } from '../../schema';
+import { Schema } from 'src/schema';
 import qs from 'query-string';
 import { useLocation } from 'react-router-dom';
-import { cities, time } from '../../services';
+import { cities, time } from 'src/services';
 
-import Increase from '../../assets/images/increase.svg';
-import Decrease from '../../assets/images/decrease.svg';
-import Cloud from '../../assets/images/cloud.svg';
-import Humidity from '../../assets/images/humidity.svg';
-import Wind from '../../assets/images/wind.svg';
-import Pressure from '../../assets/images/pressure.svg';
-import Sunrise from '../../assets/images/sunrise.svg';
-import Sunset from '../../assets/images/sunset.svg';
-import Moonrise from '../../assets/images/moonrise.svg';
-import Moonset from '../../assets/images/moonset.svg';
+import Increase from 'src/assets/images/increase.svg';
+import Decrease from 'src/assets/images/decrease.svg';
+import Cloud from 'src/assets/images/cloud.svg';
+import Humidity from 'src/assets/images/humidity.svg';
+import Wind from 'src/assets/images/wind.svg';
+import Pressure from 'src/assets/images/pressure.svg';
+import Sunrise from 'src/assets/images/sunrise.svg';
+import Sunset from 'src/assets/images/sunset.svg';
+import Moonrise from 'src/assets/images/moonrise.svg';
+import Moonset from 'src/assets/images/moonset.svg';
 
 
 const Current = styled.div`

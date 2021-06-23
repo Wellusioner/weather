@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import {Today, DayItem} from './components';
-import { cities } from '../../services';
+import { cities } from 'src/services';
 import Select from 'react-select';
-import { Schema } from '../../schema';
+import { Schema } from 'src/schema';
 
 const customStyles = {
   control: provided => ({

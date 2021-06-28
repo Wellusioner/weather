@@ -6,3 +6,4 @@ export default {
 
 console.log('API_KEY: ', process.env.API_KEY);
 console.log('API_ROOT: ', process.env.API_ROOT);
+console.log('API_ROOT: ', process.env.NODE_ENV);

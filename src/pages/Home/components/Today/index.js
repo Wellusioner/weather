@@ -103,7 +103,11 @@ const Today = ({ isFetched, data, error, location: { city } }) => {
               </div>
             </div>
           </div>
-        : <div className="today-card">
+        : null
+      }
+      {
+        !isFetched 
+        ? <div className="today-card">
             <div className="today-card-header">
               <div className="skeleton h-16"></div>
             </div>
@@ -115,6 +119,7 @@ const Today = ({ isFetched, data, error, location: { city } }) => {
               <div className="skeleton h-16"></div>
             </div>
           </div>
+        : null
       }
       {
         isFetched && error 

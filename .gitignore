@@ -5,3 +5,5 @@ build/*
 !dist/index.html
 node_modules/
 *.log
+
+.env*

@@ -3,64 +3,59 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Dotenv = require('dotenv-webpack');
 
-module.exports = (env) => {
-
-  return ({
-    entry: './src/index.js',
-    output: {
-      path: path.resolve(__dirname, 'build'),
-      filename: 'bundle.js'
-    },
-    resolve: {
-      extensions: [
-        '.js',
-        '.jsx'
-      ],
-      alias: {
-        process: "process/browser",
-        src: path.resolve(__dirname, "src"),
-      } 
-    },
-    module: {
-      rules: [
-        {
-          test: /\.(js|jsx)$/,
-          use: 'babel-loader',
-          exclude: '/node_modules/'
-        },
-        {
-          test: /\.css$/,
-          use: [
-            MiniCssExtractPlugin.loader,
-            'css-loader']
-        },
-        {
-          test: /\.(jpeg|jpg|png|gif|svg|mp3)$/,
-          use: 'file-loader'
-        },
-        {
-          test: /\.(woff|woff2|eot|ttf)$/,
-          use: {
-            loader: 'url-loader',
-          },
-        },
-      ],
-    },
-    plugins: [
-      new MiniCssExtractPlugin({
-        filename: '[name].css',
-        chunkFilename: "[id].css",
-      }),
-      new HtmlWebpackPlugin({
-        template: path.join(__dirname,'src','index.html')
-      }),
-      new Dotenv({
-        path: `./.env${env.file ? `.${env.file}` : ''}`
-      }),
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: path.resolve(__dirname, 'build'),
+    filename: 'bundle.js'
+  },
+  resolve: {
+    extensions: [
+      '.js',
+      '.jsx'
     ],
-    devServer: {
-      historyApiFallback: true,
-      contentBase: path.join(__dirname, 'src'),
-    }
-  })
+    alias: {
+      process: "process/browser",
+      src: path.resolve(__dirname, "src"),
+    } 
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        use: 'babel-loader',
+        exclude: '/node_modules/'
+      },
+      {
+        test: /\.css$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          'css-loader']
+      },
+      {
+        test: /\.(jpeg|jpg|png|gif|svg|mp3)$/,
+        use: 'file-loader'
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf)$/,
+        use: {
+          loader: 'url-loader',
+        },
+      },
+    ],
+  },
+  plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+      chunkFilename: "[id].css",
+    }),
+    new HtmlWebpackPlugin({
+      template: path.join(__dirname,'src','index.html')
+    }),
+    new Dotenv(),
+  ],
+  devServer: {
+    historyApiFallback: true,
+    contentBase: path.join(__dirname, 'src'),
+  }
 }

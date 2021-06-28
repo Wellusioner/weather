@@ -93,7 +93,6 @@ const Day = () => {
 						if(isFetched && Object.keys(data).length){
               forecast = data.daily.reduce((acc, curr,index) => parseInt(id) === index ? curr : acc, {});
               dailyFr = Object.values(forecast.feels_like).map(val => val.toFixed(0));
-              console.log(forecast);
 						}
 						
             return <>

@@ -1,7 +1,8 @@
 import { useState, useEffect} from 'react';
 import { config, queryBuilder } from 'src/services';
+import PropTypes from 'prop-types';
 
-const Schema = ({ url='', params={}, children }) => {
+const Schema = ({ url, params, children }) => {
   const [isFetched, setFetched] = useState(true);
   const [data, setData] = useState({});
   const [error, setError] = useState(null);
@@ -35,6 +36,18 @@ const Schema = ({ url='', params={}, children }) => {
     data,
     error
   });
+}
+
+Schema.defaultProps = {
+  url: '',
+  params: {},
+  children: () => {}
+}
+
+Schema.propTypes = {
+  url: PropTypes.string.isRequired,
+  params: PropTypes.object.isRequired,
+  children: PropTypes.func.isRequired
 }
 
 export default Schema;

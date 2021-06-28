@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ApexChart from 'react-apexcharts';
+import PropTypes from 'prop-types';
 
-const Chart = ({ width=500, series=[], categories=[] }) => {
+const Chart = ({ width, series, categories }) => {
   const [state, setState] = useState({
     options: {
       chart: {
@@ -119,6 +120,18 @@ const Chart = ({ width=500, series=[], categories=[] }) => {
       </div>
     </div>
   );
+}
+
+Chart.defaultProps = {
+  width: 500,
+  series: [],
+  categories: []
+}
+
+Chart.propTypes = {
+  width: PropTypes.number.isRequired,
+  series: PropTypes.array.isRequired,
+  categories: PropTypes.array.isRequired
 }
 
 export default Chart

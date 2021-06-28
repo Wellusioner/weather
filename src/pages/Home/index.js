@@ -28,22 +28,6 @@ const customStyles = {
 const Home = () => {  
   const [location, setLocation] = useState(cities[0]);
 
-  // useEffect(() => {
-  //   const { lat, lng } = location;
-  //   const url = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&units=metric&appid=71193d93d89755fdac572b758ed67201`;
-
-  //     (async () => {
-  //       try{
-  //         const res = await fetch(url);
-  //         const data = await res.json();
-  //         console.log(data);
-  //       }
-  //       catch(err){
-  //         console.log('Error:', err);
-  //       }
-  //     })()
-  // }, [location]);
-
   return (
     <>
       <div className="top-block pt-3">

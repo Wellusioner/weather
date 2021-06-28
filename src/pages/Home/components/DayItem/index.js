@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import qs from 'query-string';
 import { time } from 'src/services';
 import { Icons } from 'src/components';
+import PropTypes from 'prop-types';
 
 const DayLink = styled(Link)`
   padding: 20px 5px;
@@ -60,6 +61,11 @@ const DayItem = ({ index, item, location: { city } }) => {
       </DayLink>
     </div>
   )
+}
+
+DayItem.propTypes = {
+  index: PropTypes.number.isRequired,
+  item: PropTypes.object.isRequired,
 }
 
 export default DayItem;

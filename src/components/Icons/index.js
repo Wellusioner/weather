@@ -1,6 +1,7 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const Icons = ({ id='01'}) => {
+const Icons = ({ id }) => {
   switch(id){
     case '10d' || '10n':
       return <div className="icon sun-shower">
@@ -55,6 +56,14 @@ const Icons = ({ id='01'}) => {
         </div>
       </div>
   }
+}
+
+Icons.defaultProps = {
+  id: '01'
+}
+
+Icons.propTypes = {
+  id: PropTypes.string.isRequired
 }
 
 export default Icons

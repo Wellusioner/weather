@@ -1,11 +1,7 @@
-const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Dotenv = require('dotenv-webpack');
-const dotenv = require('dotenv').config({
-  path: path.join(__dirname, '.env')
-});
 
 module.exports = (env) => {
 
